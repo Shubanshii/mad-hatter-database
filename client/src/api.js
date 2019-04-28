@@ -84,6 +84,13 @@ export default {
       .catch(errHandler)
   },
 
+  updateGame(id, body) {
+    return service
+      .patch(`/games/${id}`, body)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   getSecret() {
     return service
       .get('/secret')

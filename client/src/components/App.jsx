@@ -9,6 +9,7 @@ import Signup from './pages/Signup';
 import Profile from './pages/Profile'
 import Game from './pages/Game'
 import api from '../api';
+import './App.css';
 import logo from '../logo.svg';
 
 export default class App extends Component {

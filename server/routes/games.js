@@ -5,8 +5,8 @@ const { isLoggedIn } = require('../middlewares')
 const router = express.Router();
 
 // Route to get all games
-router.get('/', (req, res, next) => {
-  Game.find()
+router.get('/', isLoggedIn, (req, res, next) => {
+  Game.find({ owner: req.user._id })
     .then(games => {
       res.json(games);
     })
@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
 });
 
 // route to get A game
-router.get('/:id', (req, res, next) => {
+router.get('/:id', isLoggedIn, (req, res, next) => {
   Game.findById(req.params.id)
     .then(game => {
       res.json(game);
@@ -27,6 +27,21 @@ router.post('/', isLoggedIn, (req, res, next) => {
 
   console.log(req.body, req.user);
   Game.create({ playerCount, playerInfo, name, owner: req.user._id })
+    .then(game => {
+      res.json({
+        success: true,
+        game
+      });
+    })
+    .catch(err => next(err))
+});
+
+router.patch('/:id', isLoggedIn, (req, res, next) => {
+  let { playerCount, playerInfo, name } = req.body;
+  console.log('1230942304595885885585543503', req.body, req.params.id)
+  // console.log(req.body, req.user);
+
+  Game.findByIdAndUpdate(req.params.id, { playerCount, playerInfo, name, owner: req.user._id })
     .then(game => {
       res.json({
         success: true,

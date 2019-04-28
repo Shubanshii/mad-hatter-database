@@ -6,8 +6,9 @@ export const setName = (name) => ({
 });
 
 export const BEGIN_GAME = 'BEGIN_GAME';
-export const beginGame = () => ({
+export const beginGame = (res) => ({
   type: BEGIN_GAME,
+  res
 
 });
 

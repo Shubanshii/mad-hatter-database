@@ -15,24 +15,30 @@ export class Profile extends Component {
     this.getGames();
   }
 
-  setRedirect = () => {
+  setRedirect = (id) => {
     this.setState({
-      redirect: true
+      redirect: true,
+      id
     })
   }
 
   renderRedirect = () => {
     if (this.state.redirect) {
       console.log('setting')
-      return <Redirect to='/game' />
+      return <Redirect to={`/game/${this.state.id}`} />
     }
   }
 
   makeRoom(e) {
     e.preventDefault();
     const value = this.input.value;
-    this.props.dispatch(setName(value));
-    this.setRedirect()
+
+    api.addGame({ playerCount: 2, playerInfo: [], name: value }).then(game => {
+      console.log(game);
+      this.props.dispatch(setName(value));
+      this.setRedirect(game.game._id)
+    })
+
 
   }
 
