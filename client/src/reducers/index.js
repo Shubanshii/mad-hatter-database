@@ -89,15 +89,28 @@ export const hatterReducer = (state = initialState, action) => {
   }
 
   function handleBeginGame() {
-    addAllPlayersToHand();
+    console.log('theresisthebeststateevarrrrr', state)
+    console.log('theresisthebestmodifiedstateevarrrrr', modifiedState)
+    console.log('theresisthebestresevarrrrr', action.res)
     console.log("inhandpushtest", modifiedState.inHand);
+    addAllPlayersToHand();
+
+    console.log(modifiedState)
     addToPot(smallBlind + bigBlind);
     modifiedState.playerInfo = state.playerInfo.map(player => {
       if (player.smallBlind === true) {
+        if (action.res.playerInfo[0]) {
+          player.stackSize = action.res.playerInfo[0].stackSize
+        }
         removeFromStack(player, smallBlind);
         setContributedTowards(player, smallBlind);
       } else if (player.bigBlind === true) {
+        if (action.res.playerInfo[1]) {
+          player.stackSize = action.res.playerInfo[1].stackSize
+
+        }
         removeFromStack(player, bigBlind);
+
         setContributedTowards(player, bigBlind);
       }
       return player;
