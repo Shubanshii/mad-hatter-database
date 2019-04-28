@@ -6,7 +6,7 @@ export default class Home extends Component {
   //   this.state = {
   //   }
   // }
-  render() {                
+  render() {
     return (
       <div className="Home">
         <h2>Home</h2>

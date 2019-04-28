@@ -6,6 +6,8 @@ import AddCountry from './pages/AddCountry';
 import Secret from './pages/Secret';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Profile from './pages/Profile'
+import Game from './pages/Game'
 import api from '../api';
 import logo from '../logo.svg';
 
@@ -32,7 +34,7 @@ export default class App extends Component {
           <NavLink to="/add-country">Add country</NavLink>
           {!api.isLoggedIn() && <NavLink to="/signup">Signup</NavLink>}
           {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
-          {api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link>}
+          {api.isLoggedIn() && <Link to="/profile" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link>}
           <NavLink to="/secret">Secret</NavLink>
         </header>
         <Switch>
@@ -42,6 +44,9 @@ export default class App extends Component {
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/secret" component={Secret} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/game/:id" component={Game} />
+
           <Route render={() => <h2>404</h2>} />
         </Switch>
       </div>

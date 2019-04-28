@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import api from '../../api';
 
-
 export default class AddCountry extends Component {
   constructor(props) {
     super(props)

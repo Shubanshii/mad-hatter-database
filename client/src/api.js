@@ -62,17 +62,24 @@ export default {
   },
 
   // This is an example on how to use this method in a different file
-  // api.getCountries().then(countries => { /* ... */ })
-  getCountries() {
+  // api.getgames().then(games => { /* ... */ })
+  getGames() {
     return service
-      .get('/countries')
+      .get('/games')
       .then(res => res.data)
       .catch(errHandler)
   },
 
-  addCountry(body) {
+  getGame(id) {
     return service
-      .post('/countries', body)
+      .get(`/games/${id}`)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  addGame(body) {
+    return service
+      .post('/games', body)
       .then(res => res.data)
       .catch(errHandler)
   },
