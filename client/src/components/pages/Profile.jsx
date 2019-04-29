@@ -44,6 +44,7 @@ export class Profile extends Component {
 
   showGames = () => {
     return this.state.games.map((game) => {
+      console.log(game)
       return <Link to={`/game/${game._id}`}><li>{game.name}</li></Link>
     })
   }
