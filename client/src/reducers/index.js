@@ -107,18 +107,22 @@ export const hatterReducer = (state = initialState, action) => {
 
           player.stackSize = action.res.playerInfo[0].stackSize
           console.log('logging playerstacksize to see if resplayer returns true', player.stackSize)
+        } else {
+          console.log('logging playerstacksize to see if resplayer returns false', player.stackSize)
+          // removeFromStack(player, smallBlind);
+          player.stackSize = 99.5
+          setContributedTowards(player, smallBlind);
         }
-        console.log('logging playerstacksize to see if resplayer returns false', player.stackSize)
-        removeFromStack(player, smallBlind);
-        setContributedTowards(player, smallBlind);
       } else if (player.bigBlind === true) {
         if (action.res.playerInfo[1]) {
           player.stackSize = action.res.playerInfo[1].stackSize
 
+        } else {
+          console.log('logging playerstacksize to see if resplayer returns false', player.stackSize)
+          // removeFromStack(player, smallBlind);
+          player.stackSize = 99
+          setContributedTowards(player, bigBlind);
         }
-        removeFromStack(player, bigBlind);
-
-        setContributedTowards(player, bigBlind);
       }
       return player;
     });
