@@ -53,6 +53,7 @@ export class Game extends Component {
 }
 
 const mapStateToProps = state => ({
+  name: state.name,
   playerCount: state.playerCount,
   playerInfo: state.playerInfo
 });
