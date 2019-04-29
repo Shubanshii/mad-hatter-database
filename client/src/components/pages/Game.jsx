@@ -9,18 +9,22 @@ import React, { Component } from 'react';
 import PlayerCircle from './PlayerCircle';
 import PlayerDecision from './PlayerDecision';
 import Notification from './Notification';
-import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
-import { beginGame } from '../../actions';
+import { beginGame, setName } from '../../actions';
 import api from '../../api';
 
 
 export class Game extends Component {
   componentDidMount() {
     api.getGame(this.props.match.params.id)
-      .then(res => this.props.dispatch(beginGame(res)))
+      .then(res => {
+        this.props.dispatch(beginGame(res))
+        this.props.dispatch(setName(res.name))
+        console.log('resingamecomponent', res);
+        console.log('resingamecomponent', res.name);
+      })
 
-    // this.props.dispatch(beginGame());
+    // this.props.dispatch(setName())
   }
 
   saveGame = () => {
