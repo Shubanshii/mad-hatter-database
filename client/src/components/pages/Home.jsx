@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import api from '../../api';
 
 export default class Home extends Component {
   // constructor(props) {
@@ -6,9 +7,19 @@ export default class Home extends Component {
   //   this.state = {
   //   }
   // }
+
+  checkIfLoggedIn = () => {
+    console.log(api.isLoggedIn())
+    if (api.isLoggedIn()) {
+      this.props.history.push("/profile") // Redirect to the home page
+    }
+  }
+
   render() {
     return (
-      <div className="Home text-center">
+
+      < div className="Home text-center" >
+        {this.checkIfLoggedIn()}
         <h2>Home</h2>
         <p className="instructions">The Mad Hatter is an action tracker for Texas Hold'Em
 It's use case is currently for 2 people with a deck of cards,
@@ -19,7 +30,7 @@ your bets, raises, checks, calls, etc. on the app.
 
 Make an account.  Create a game.  Then save the game.
 The saved game will be available on your profile dashboard.</p>
-      </div>
+      </div >
     );
   }
 }

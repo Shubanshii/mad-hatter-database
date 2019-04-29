@@ -22,13 +22,8 @@ export default class App extends Component {
   }
 
   getProfile = () => {
-    if (api.isLoggedIn) {
-      console.log('getting profile')
-      return <Route path="/profile" exact component={Profile} />
+    console.log('getting profile')
 
-    } else {
-      return <Route path="/" exact component={Home} />
-    }
   }
 
   render() {
@@ -43,7 +38,6 @@ export default class App extends Component {
           {api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link>}
         </header>
         <Switch>
-          {this.getProfile()}
           <Route path="/" exact component={Home} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
