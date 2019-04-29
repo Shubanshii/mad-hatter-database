@@ -8,9 +8,9 @@ export default class Home extends Component {
   // }
   render() {
     return (
-      <div className="Home">
+      <div className="Home text-center">
         <h2>Home</h2>
-        <p>The Mad Hatter is an action tracker for Texas Hold'Em
+        <p className="instructions">The Mad Hatter is an action tracker for Texas Hold'Em
 It's use case is currently for 2 people with a deck of cards,
 but no poker chips or decent substitute for poker chips.
 
