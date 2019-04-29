@@ -89,24 +89,8 @@ export class PlayerDecision extends Component {
         {/*<h2>Your Stack Size:</h2>
         <h6>100</h6>*/}
         <h2>Pot Size: {this.props.potSize}</h2>
-        <form>
-          {/*<h2>Player {this.props.playerTurn} act</h2>*/}
-          <div className="form-section">
-            <button onClick={() => this.check()} type="button" name="check">Check</button>
-            <button onClick={() => this.call()} type="button" name="call">Call</button>
-            <button onClick={() => this.fold()} type="button" name="fold">Fold</button>
-            {/*<div>
-              <label>
-                Raise:
-                <input className="amount" type="number" name="amount" placeholder="12" />
-              </label>
-              <input onClick={(e) => this.raise(e)} type="submit"/>
-            <label htmlFor="raise">Raise</label>
-            <input onClick={() => this.raise()} type="number" name="amount" placeholder="12" />
-          </div>*/}
-          </div>
-        </form>
-        <form onSubmit={e => this.raise(e)}>
+
+        <form className="raise-form" onSubmit={e => this.raise(e)}>
           <input
             type="number"
             step="0.01"
@@ -130,6 +114,23 @@ export class PlayerDecision extends Component {
           >
             Bet/Raise to
           </button>
+        </form>
+        <form>
+          {/*<h2>Player {this.props.playerTurn} act</h2>*/}
+          <div className="form-section">
+            <button className="btn btn-success decision" onClick={() => this.check()} type="button" name="check">Check</button>
+            <button className="btn btn-success decision" onClick={() => this.call()} type="button" name="call">Call</button>
+            <button className="btn btn-success decision" onClick={() => this.fold()} type="button" name="fold">Fold</button>
+            {/*<div>
+              <label>
+                Raise:
+                <input className="amount" type="number" name="amount" placeholder="12" />
+              </label>
+              <input onClick={(e) => this.raise(e)} type="submit"/>
+            <label htmlFor="raise">Raise</label>
+            <input onClick={() => this.raise()} type="number" name="amount" placeholder="12" />
+          </div>*/}
+          </div>
         </form>
       </div>
     );
