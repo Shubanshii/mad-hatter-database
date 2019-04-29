@@ -12,6 +12,14 @@ export const beginGame = (res) => ({
 
 });
 
+export const RESUME_GAME = 'BEGIN_GAME';
+export const resumeGame = (res) => ({
+  type: RESUME_GAME,
+  res
+
+});
+
+
 export const BEGIN_HAND = 'BEGIN_HAND';
 export const beginHand = playerInfo => ({
   type: BEGIN_HAND,

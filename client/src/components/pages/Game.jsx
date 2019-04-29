@@ -18,10 +18,12 @@ export class Game extends Component {
   componentDidMount() {
     api.getGame(this.props.match.params.id)
       .then(res => {
+        console.log('console logging res inside game', res);
         this.props.dispatch(beginGame(res))
         this.props.dispatch(setName(res.name))
         console.log('resingamecomponent', res);
         console.log('resingamecomponent', res.name);
+
       })
 
     // this.props.dispatch(setName())

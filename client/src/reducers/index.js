@@ -88,6 +88,10 @@ export const hatterReducer = (state = initialState, action) => {
     });
   }
 
+  function handleResumeGame() {
+    console.log(action.res)
+  }
+
   function handleBeginGame() {
     console.log('theresisthebeststateevarrrrr', state)
     console.log('theresisthebestmodifiedstateevarrrrr', modifiedState)
@@ -100,8 +104,11 @@ export const hatterReducer = (state = initialState, action) => {
     modifiedState.playerInfo = state.playerInfo.map(player => {
       if (player.smallBlind === true) {
         if (action.res.playerInfo[0]) {
+
           player.stackSize = action.res.playerInfo[0].stackSize
+          console.log('logging playerstacksize to see if resplayer returns true', player.stackSize)
         }
+        console.log('logging playerstacksize to see if resplayer returns false', player.stackSize)
         removeFromStack(player, smallBlind);
         setContributedTowards(player, smallBlind);
       } else if (player.bigBlind === true) {
@@ -841,6 +848,10 @@ export const hatterReducer = (state = initialState, action) => {
       break;
     case actions.BEGIN_GAME:
       handleBeginGame();
+
+      break;
+    case actions.RESUME_GAME:
+      handleResumeGame();
 
       break;
     case actions.FOLD:
