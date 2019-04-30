@@ -52,6 +52,12 @@
   }
 }
 
+.circle-container > h5 {
+  width: 100%;
+  margin-left: -113%;
+  margin-top: -45%;
+}
+
 li {
   background-color: white;
   border-radius: 10px;

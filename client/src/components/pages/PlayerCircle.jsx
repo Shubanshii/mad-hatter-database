@@ -22,7 +22,9 @@ export class PlayerCircle extends Component {
     // console.log(this.props.stackSizes);
     return (
       <div className="App">
+
         <ul className='circle-container'>
+          <h5>Street: {this.props.street}</h5>
           <li>
             <h3>Player 1</h3>
             <h5>{this.props.playerInfo[0].stackSize}</h5>
@@ -45,9 +47,12 @@ PlayerCircle.defaultProps = {
 };
 
 const mapStateToProps = state => ({
+  street: state.street,
+  handIndex: state.handIndex,
   playerInfo: state.playerInfo,
+  handOver: state.handOver,
   inHand: state.inHand,
-  headsUp: state.headsUp,
+  headsUp: state.headsUp
 
 });
 
