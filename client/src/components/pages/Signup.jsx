@@ -39,8 +39,20 @@ export default class Signup extends Component {
       <div className="Signup">
         <h2>Signup</h2>
         <form>
-          Username: <input type="text" value={this.state.username} name="username" onChange={this.handleInputChange} /> <br />
-          Name: <input type="text" value={this.state.name} name="name" onChange={this.handleInputChange} /> <br />
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-5"></div>
+              <div className="col-sm-1">Username:</div>
+              <div className="col-sm-1"><input type="text" value={this.state.username} name="username" onChange={this.handleInputChange} /></div>
+            </div>
+            <div className="row">
+              <div className="col-sm-5"></div>
+              <div className="col-sm-1">Name:</div>
+              <div className="col-sm-1"><input type="text" value={this.state.name} name="name" onChange={this.handleInputChange} /></div>
+            </div>
+          </div>
+
+          <br />
           Password: <input type="password" value={this.state.password} name="password" onChange={this.handleInputChange} /> <br />
           <button onClick={(e) => this.handleClick(e)}>Signup</button>
         </form>
