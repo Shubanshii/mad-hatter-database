@@ -7,7 +7,6 @@ import Profile from './pages/Profile'
 import Game from './pages/Game'
 import api from '../api';
 import './App.css';
-import logo from '../logo.svg';
 
 export default class App extends Component {
   constructor(props) {
@@ -30,7 +29,6 @@ export default class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Mad HATter</h1>
           <NavLink to="/" exact>Home</NavLink>
           {!api.isLoggedIn() && <NavLink to="/signup">Signup</NavLink>}
