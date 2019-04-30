@@ -18,13 +18,32 @@ export class PlayerCircle extends Component {
   //     }
   //   }
   // }
+
   render() {
+    let playerInfo = this.props.playerInfo;
+    let playerTurn;
+    let smallBlind;
+    let bigBlind;
+    for (var i = 0; i < playerInfo.length; i++) {
+      if (playerInfo[i].smallBlind === true) {
+        smallBlind = playerInfo[i].name;
+      }
+      else if (playerInfo[i].bigBlind === true) {
+        bigBlind = playerInfo[i].name;
+      }
+
+      if (playerInfo[i].playerTurn) {
+        playerTurn = playerInfo[i].name;
+      }
+
+    }
     // console.log(this.props.stackSizes);
     return (
       <div className="App">
 
         <ul className='circle-container'>
-          <h5>Street: {this.props.street}</h5>
+          <h5 className='street'>Street: {this.props.street}</h5>
+          <h5>Turn: {playerTurn}</h5>
           <li>
             <h3>Player 1</h3>
             <h5>{this.props.playerInfo[0].stackSize}</h5>
