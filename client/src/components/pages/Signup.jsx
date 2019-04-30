@@ -42,17 +42,17 @@ export default class Signup extends Component {
           <div className="container">
             <div className="row">
               <div className="col-sm-5"></div>
-              <div className="col-sm-1">Username:</div>
+              <div className="col-sm-1 text-left">Username:</div>
               <div className="col-sm-1"><input type="text" value={this.state.username} name="username" onChange={this.handleInputChange} /></div>
             </div>
             <div className="row">
               <div className="col-sm-5"></div>
-              <div className="col-sm-1">Name:</div>
+              <div className="col-sm-1 text-left">Name:</div>
               <div className="col-sm-1"><input type="text" value={this.state.name} name="name" onChange={this.handleInputChange} /></div>
             </div>
             <div className="row">
               <div className="col-sm-5"></div>
-              <div className="col-sm-1">Password:</div>
+              <div className="col-sm-1 text-left">Password:</div>
               <div className="col-sm-1"><input type="password" value={this.state.password} name="password" onChange={this.handleInputChange} /></div>
             </div>
           </div>
