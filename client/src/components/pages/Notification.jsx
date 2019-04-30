@@ -49,7 +49,7 @@ export class Notification extends Component {
     // console.log(this.props.playerInfo);
     // console.log('playerturn', player.name);
     return (
-      <div className="App">
+      <div className="App mt-5">
         <h3>Hand: {this.props.handIndex}</h3>
         <h3>Street: {this.props.street}</h3>
         {/*<h3>Turn: {player.name}</h3>*/}
