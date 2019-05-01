@@ -45,9 +45,7 @@ export class Notification extends Component {
       }
 
     }
-    // const player = this.props.playerInfo.find(player => player.playerTurn === true);
-    // console.log(this.props.playerInfo);
-    // console.log('playerturn', player.name);
+
     return (
       <div className="App mt-3">
         <h5>Hand: {this.props.handIndex}</h5>

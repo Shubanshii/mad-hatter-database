@@ -5,20 +5,6 @@ import Notification from './Notification';
 //import {nextHand, setWinner, setBlinds} from './actions';
 
 export class PlayerCircle extends Component {
-  // componentDidUpdate() {
-  //   console.log('component updation');
-  //   let playerInfo = this.props.playerInfo;
-  //   if(this.props.inHand.length === 1) {
-  //     this.props.dispatch(setWinner());
-  //     //heads up logic
-  //     if(this.props.headsUp) {
-  //
-  //       this.props.dispatch(nextHand());
-  //       this.props.dispatch(setBlinds());
-  //
-  //     }
-  //   }
-  // }
 
   render() {
     let playerInfo = this.props.playerInfo;
@@ -38,7 +24,6 @@ export class PlayerCircle extends Component {
       }
 
     }
-    // console.log(this.props.stackSizes);
     return (
       <div className="App">
         <div className="row">

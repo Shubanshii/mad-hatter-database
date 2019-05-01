@@ -36,8 +36,7 @@ export class PlayerDecision extends Component {
         }}
       />
     );
-    console.log('raised', this.props.raised);
-    console.log('street', this.props.street);
+
     let raised = this.props.raised;
     let street = this.props.street;
     let contributed = 0;
@@ -48,15 +47,13 @@ export class PlayerDecision extends Component {
         stackSize = player.stackSize;
       }
     })
-    console.log('cont', contributed);
-    console.log('stacksize', stackSize);
+
     let minRaise = 0;
     let maxRaise = contributed + stackSize;
     if (street === 'Preflop') {
       if (!raised) {
         minRaise = this.props.toPlay * 2;
-        console.log('contributed', contributed);
-        console.log('stacksize', stackSize);
+
         if (stackSize + contributed === 0) {
           alert('log preflop scenario of blind being all in')
         }
@@ -69,8 +66,7 @@ export class PlayerDecision extends Component {
 
         minRaise = this.props.toPlay + this.props.amountRaised;
         if (stackSize + contributed < minRaise) {
-          console.log('stack of player 2', stackSize);
-          console.log('less than minraise');
+
           minRaise = stackSize + contributed;
           maxRaise = stackSize + contributed;
         }
@@ -86,8 +82,6 @@ export class PlayerDecision extends Component {
       } else {
         minRaise = this.props.toPlay + this.props.amountRaised;
         maxRaise = contributed + stackSize;
-        console.log('contributed', contributed);
-        console.log('stackSize', stackSize);
 
         if (stackSize + contributed < minRaise) {
           minRaise = stackSize + contributed;

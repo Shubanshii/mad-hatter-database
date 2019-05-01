@@ -9,7 +9,6 @@ export default class Home extends Component {
   // }
 
   checkIfLoggedIn = () => {
-    console.log(api.isLoggedIn())
     if (api.isLoggedIn()) {
       this.props.history.push("/profile") // Redirect to the home page
     }

@@ -1,10 +1,3 @@
-//   componentDidMount() {
-//     console.log(this.props.match.params.id)
-//     api.getGame(this.props.match.params.id)
-//       .then(res => console.log(res))
-//   }
-
-
 import React, { Component } from 'react';
 import PlayerCircle from './PlayerCircle';
 import PlayerDecision from './PlayerDecision';
@@ -18,11 +11,9 @@ export class Game extends Component {
   componentDidMount() {
     api.getGame(this.props.match.params.id)
       .then(res => {
-        console.log('console logging res inside game', res);
         this.props.dispatch(beginGame(res))
         this.props.dispatch(setName(res.name))
-        console.log('resingamecomponent', res);
-        console.log('resingamecomponent', res.name);
+
 
       })
 
@@ -30,10 +21,8 @@ export class Game extends Component {
   }
 
   saveGame = () => {
-    console.log('this.props', this.props)
-    console.log(this.props.name);
+
     let { playerCount, playerInfo, name } = this.props;
-    console.log(playerCount, playerInfo, name)
 
     api.updateGame(this.props.match.params.id, { playerCount, playerInfo, name }).then(game => {
       console.log(game);
