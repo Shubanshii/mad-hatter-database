@@ -42,12 +42,12 @@ export class PlayerCircle extends Component {
     return (
       <div className="App">
         <div className="row">
-          <div className="col-4 align-self-center">
+          <div className="col-3 align-self-center">
             <h3>Player 1</h3>
             <h5>{this.props.playerInfo[0].stackSize}</h5>
           </div>
-          <div className="col-4 align-self-start"><Notification /></div>
-          <div className="col-4 align-self-center">
+          <div className="col-6 align-self-start"><Notification /></div>
+          <div className="col-3 align-self-center">
             <h3>Player 2</h3>
             <h5>{this.props.playerInfo[1].stackSize}</h5>
           </div>

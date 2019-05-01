@@ -27,7 +27,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App container">
         <header className="App-header">
           <h1 className="App-title">Mad HATter</h1>
           <NavLink to="/" exact>Home</NavLink>
