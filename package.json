@@ -8,6 +8,10 @@
     "dev:server": "cd server && npm run dev",
     "dev:client": "cd client && npm run start"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Shubanshii/mad-hatter-database"
+  },
   "engines": {
     "node": "8.9.4"
   }
