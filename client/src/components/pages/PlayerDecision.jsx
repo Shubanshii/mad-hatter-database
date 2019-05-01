@@ -26,6 +26,15 @@ export class PlayerDecision extends Component {
   render() {
     //const playerCount = this.props.playerCount;
     //  const player = this.props.playerInfo.find(player => player.playerTurn === true);
+    const ColoredLine = ({ color }) => (
+      <hr
+        style={{
+          color: color,
+          backgroundColor: color,
+          height: 5
+        }}
+      />
+    );
     console.log('raised', this.props.raised);
     console.log('street', this.props.street);
     let raised = this.props.raised;
@@ -85,9 +94,10 @@ export class PlayerDecision extends Component {
 
 
     return (
-      <div className="App">
+      <div className="App mt-3">
         {/*<h2>Your Stack Size:</h2>
         <h6>100</h6>*/}
+        <ColoredLine color="red" />
         <h2>Pot Size: {this.props.potSize}</h2>
 
         <form className="raise-form" onSubmit={e => this.raise(e)}>

@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Notification from './Notification';
 //import {nextHand, setWinner, setBlinds} from './actions';
 
 export class PlayerCircle extends Component {
@@ -40,8 +41,19 @@ export class PlayerCircle extends Component {
     // console.log(this.props.stackSizes);
     return (
       <div className="App">
+        <div className="row">
+          <div className="col-4 align-self-center">
+            <h3>Player 1</h3>
+            <h5>{this.props.playerInfo[0].stackSize}</h5>
+          </div>
+          <div className="col-4 align-self-start"><Notification /></div>
+          <div className="col-4 align-self-center">
+            <h3>Player 2</h3>
+            <h5>{this.props.playerInfo[1].stackSize}</h5>
+          </div>
+        </div>
 
-        <ul className='circle-container'>
+        {/*<ul className='circle-container'>
           <h5 className='street'>Street: {this.props.street}</h5>
           <h5>Turn: {playerTurn}</h5>
           <li>
@@ -54,8 +66,8 @@ export class PlayerCircle extends Component {
             <h5>{this.props.playerInfo[1].stackSize}</h5>
 
           </li>
-        </ul>
-      </div>
+    </ul>*/}
+      </div >
     );
   }
 }

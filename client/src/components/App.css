@@ -64,6 +64,10 @@ li {
   border: 3px solid #BADA55;
 }
 
+.separator {
+  border: 5px;
+}
+
 /* @import "compass/css3"; */
 .circle-container {
   position: relative;

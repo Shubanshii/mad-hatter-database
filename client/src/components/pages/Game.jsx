@@ -45,9 +45,9 @@ export class Game extends Component {
     return (
       <div className="App">
         <main role="main">
-          <header>
-          </header>
-          <Notification />
+          {/* <header>
+         </header> 
+         <Notification /> */}
           <PlayerCircle />
           <PlayerDecision />
           <button className="btn btn-primary" onClick={this.saveGame}>Save Game</button>
