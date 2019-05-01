@@ -6,6 +6,12 @@ import { call, fold, raise, check } from '../../actions';
 export class Check extends Component {
 
   check() {
+    this.props.playerInfo.forEach(player => {
+      if (player.playerTurn) {
+        alert(`${player.name} checks.`)
+      }
+
+    })
     this.props.dispatch(check());
   }
 

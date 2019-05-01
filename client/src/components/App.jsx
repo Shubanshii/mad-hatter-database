@@ -20,11 +20,6 @@ export default class App extends Component {
     api.logout()
   }
 
-  getProfile = () => {
-    console.log('getting profile')
-
-  }
-
   render() {
     return (
       <div className="App container">

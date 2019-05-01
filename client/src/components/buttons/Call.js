@@ -6,6 +6,16 @@ import { call, fold, raise, check } from '../../actions';
 export class Call extends Component {
 
   call() {
+    console.log(`toplay minus contributed ${this.props.toPlay - this.props.playerInfo[0]}`);
+    let callAmount;
+    this.props.playerInfo.forEach(player => {
+      if (player.playerTurn) {
+        callAmount = this.props.toPlay - player.contributedTowardsToPlay
+        alert(`${player.name} calls ${callAmount}`)
+      }
+    })
+
+
     this.props.dispatch(call());
   }
 

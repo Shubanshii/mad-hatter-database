@@ -7,23 +7,21 @@ import Fold from '../buttons/Fold'
 
 
 export class PlayerDecision extends Component {
-  fold() {
-    this.props.dispatch(fold());
-
-  }
-
-  call() {
-    this.props.dispatch(call());
-  }
 
   raise(e) {
     e.preventDefault();
     const value = this.input.value;
-    this.props.dispatch(raise(value));
-  }
+    this.props.playerInfo.forEach(player => {
+      if (player.playerTurn) {
+        if (this.props.street !== "Preflop" && !this.props.raised) {
+          alert(`${player.name} bets ${value}`)
+        } else {
 
-  check() {
-    this.props.dispatch(check());
+          alert(`${player.name} raises to ${value}.`)
+        }
+      }
+    })
+    this.props.dispatch(raise(value));
   }
 
   render() {

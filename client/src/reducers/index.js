@@ -121,6 +121,7 @@ export const hatterReducer = (state = initialState, action) => {
         if (action.res.playerInfo[0]) {
 
           player.stackSize = action.res.playerInfo[0].stackSize
+          setContributedTowards(player, smallBlind);
           console.log('logging playerstacksize to see if resplayer returns true', player.stackSize)
         } else {
           console.log('logging playerstacksize to see if resplayer returns false', player.stackSize)
@@ -131,6 +132,7 @@ export const hatterReducer = (state = initialState, action) => {
       } else if (player.bigBlind === true) {
         if (action.res.playerInfo[1]) {
           player.stackSize = action.res.playerInfo[1].stackSize
+          setContributedTowards(player, bigBlind);
 
         } else {
           console.log('logging playerstacksize to see if resplayer returns false', player.stackSize)
@@ -907,11 +909,19 @@ export const hatterReducer = (state = initialState, action) => {
         handleHideCheck();
         alert("Can't check here");
       } else if (state.headsUp === true && state.raised === false) {
+        // modifiedState.playerInfo.forEach(player => {
+        //   if (player.playerTurn) {
+        //     alert(player.name + ' checks.')
+        //   }
+        // })
+
         handleCheck();
+
       }
       break;
     case actions.CALL:
       handleCall();
+
 
       break;
     case actions.RAISE:
