@@ -2,6 +2,21 @@
 //   ROTATE_PLAYER, ROTATE_ROUND, END_HAND, ROTATE_DEALER} as actions from '../actions';
 import * as actions from "../actions";
 const initialState = {
+  decisions: [{
+    name: 'check',
+    isHidden: true
+  }, {
+    name: 'fold',
+    isHidden: false
+  }, {
+    name: 'call',
+    isHidden: false
+  },
+  {
+    name: 'raise',
+    isHidden: false
+  }
+  ],
   name: '',
   playerCount: 2,
   toPlay: 1,
@@ -128,7 +143,23 @@ export const hatterReducer = (state = initialState, action) => {
     });
   }
 
+  function handleHideCheck() {
+    modifiedState.decisions[0].isHidden = true
+  }
+
+  function handleHideCall() {
+    modifiedState.decisions[2].isHidden = true;
+  }
+
+  function handleShowCall() {
+    modifiedState.decisions[2].isHidden = false;
+  }
+
+  // handleHideRaise(), etc.
+
   function setUpNextHand() {
+    handleShowCall();
+    handleHideCheck();
     mustDeclareWinner = false;
     modifiedState.raised = false;
     modifiedState.handIndex++;
@@ -171,6 +202,8 @@ export const hatterReducer = (state = initialState, action) => {
   }
 
   function incrementStreet() {
+    modifiedState.decisions[0].isHidden = false;
+    handleHideCall();
     //modifiedState.street = "Flop";
     console.log(state.streets.indexOf(state.street));
     let streetIndex = state.streets.indexOf(state.street);
@@ -376,10 +409,14 @@ export const hatterReducer = (state = initialState, action) => {
   }
 
   function handlePreflopCall() {
+    // show check button
+    modifiedState.decisions[0].isHidden = false;
     if (!state.raised) {
       if (!state.completed) {
+        handleHideCall();
         smallBlindCompletes();
       } else {
+        handleHideCall();
         alert("Can't call here.  Check or raise.");
       }
     } else {
@@ -442,6 +479,7 @@ export const hatterReducer = (state = initialState, action) => {
 
   function handleFlopTurnCall() {
     if (!state.raised) {
+      handleHideCall();
       alert("Can't call here.  Check or raise.");
     } else {
       modifiedState.playerInfo = state.playerInfo.map(player => {
@@ -502,6 +540,7 @@ export const hatterReducer = (state = initialState, action) => {
 
   function handleRiverCall() {
     if (!state.raised) {
+      handleHideCall();
       alert("Can't call here.  Check or raise.");
     } else {
       modifiedState.playerInfo = state.playerInfo.map(player => {
@@ -865,6 +904,7 @@ export const hatterReducer = (state = initialState, action) => {
     case actions.CHECK:
       // can't check when small blind or dealer preflop heads up.  can only complete
       if (state.raised) {
+        handleHideCheck();
         alert("Can't check here");
       } else if (state.headsUp === true && state.raised === false) {
         handleCheck();
@@ -876,7 +916,8 @@ export const hatterReducer = (state = initialState, action) => {
       break;
     case actions.RAISE:
       handleRaise();
-
+      handleHideCheck();
+      handleShowCall();
       break;
     default:
       console.log("No action chosen");

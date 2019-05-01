@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { call, fold, raise, check } from '../../actions';
+import Check from '../buttons/Check';
+import Call from '../buttons/Call'
+import Fold from '../buttons/Fold'
 
 
 export class PlayerDecision extends Component {
@@ -56,7 +59,10 @@ export class PlayerDecision extends Component {
         minRaise = this.props.toPlay * 2;
         console.log('contributed', contributed);
         console.log('stacksize', stackSize);
-        if (stackSize + contributed < minRaise) {
+        if (stackSize + contributed === 0) {
+          alert('log preflop scenario of blind being all in')
+        }
+        else if (stackSize + contributed < minRaise) {
           minRaise = stackSize + contributed;
           maxRaise = stackSize + contributed;
         }
@@ -128,9 +134,22 @@ export class PlayerDecision extends Component {
         <form>
           {/*<h2>Player {this.props.playerTurn} act</h2>*/}
           <div className="form-section">
-            <button className="btn btn-success decision" onClick={() => this.check()} type="button" name="check">Check</button>
-            <button className="btn btn-success decision" onClick={() => this.call()} type="button" name="call">Call</button>
-            <button className="btn btn-success decision" onClick={() => this.fold()} type="button" name="fold">Fold</button>
+            <div className="row">
+              <div className="col-3">
+
+              </div>
+              <div className="col-6">
+                {!this.props.decisions[0].isHidden ? <Check /> : null}
+                {/* <button className="btn btn-success decision" onClick={() => this.check()} type="button" name="check">Check</button>*/}
+                {!this.props.decisions[2].isHidden ? <Call /> : null}
+                {/*<button className="btn btn-success decision" onClick={() => this.call()} type="button" name="call">Call</button>*/}
+                {!this.props.decisions[1].isHidden ? <Fold /> : null}
+              </div>
+
+              <div className="col-3"></div>
+              {/*<button className="btn btn-success decision" onClick={() => this.fold()} type="button" name="fold">Fold</button>*/}
+            </div>
+
             {/*<div>
               <label>
                 Raise:
@@ -152,6 +171,7 @@ export class PlayerDecision extends Component {
 // };
 //
 const mapStateToProps = state => ({
+  decisions: state.decisions,
   maxBuyIn: state.maxBuyIn,
   playerInfo: state.playerInfo,
   potSize: state.potSize,
