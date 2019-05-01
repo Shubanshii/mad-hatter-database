@@ -22,7 +22,6 @@ export default class Login extends Component {
     e.preventDefault()
     api.login(this.state.username, this.state.password)
       .then(result => {
-        console.log('SUCCESS!')
         this.props.history.push("/profile") // Redirect to the home page
       })
       .catch(err => this.setState({ message: err.toString() }))

@@ -25,7 +25,6 @@ export class Game extends Component {
     let { playerCount, playerInfo, name } = this.props;
 
     api.updateGame(this.props.match.params.id, { playerCount, playerInfo, name }).then(game => {
-      console.log(game);
     })
   }
 

@@ -86,7 +86,6 @@ export const hatterReducer = (state = initialState, action) => {
   let allInRefund = 0;
 
   function handleSetName() {
-    console.log('setting name', action.name)
     modifiedState.name = action.name;
   }
 
@@ -103,18 +102,9 @@ export const hatterReducer = (state = initialState, action) => {
     });
   }
 
-  function handleResumeGame() {
-    console.log(action.res)
-  }
-
   function handleBeginGame() {
-    console.log('theresisthebeststateevarrrrr', state)
-    console.log('theresisthebestmodifiedstateevarrrrr', modifiedState)
-    console.log('theresisthebestresevarrrrr', action.res)
-    console.log("inhandpushtest", modifiedState.inHand);
     addAllPlayersToHand();
 
-    console.log(modifiedState)
     addToPot(smallBlind + bigBlind);
     modifiedState.playerInfo = state.playerInfo.map(player => {
       if (player.smallBlind === true) {
@@ -122,9 +112,9 @@ export const hatterReducer = (state = initialState, action) => {
 
           player.stackSize = action.res.playerInfo[0].stackSize
           setContributedTowards(player, smallBlind);
-          console.log('logging playerstacksize to see if resplayer returns true', player.stackSize)
+
         } else {
-          console.log('logging playerstacksize to see if resplayer returns false', player.stackSize)
+
           // removeFromStack(player, smallBlind);
           player.stackSize = 99.5
           setContributedTowards(player, smallBlind);
@@ -135,8 +125,7 @@ export const hatterReducer = (state = initialState, action) => {
           setContributedTowards(player, bigBlind);
 
         } else {
-          console.log('logging playerstacksize to see if resplayer returns false', player.stackSize)
-          // removeFromStack(player, smallBlind);
+
           player.stackSize = 99
           setContributedTowards(player, bigBlind);
         }
@@ -207,7 +196,6 @@ export const hatterReducer = (state = initialState, action) => {
     modifiedState.decisions[0].isHidden = false;
     handleHideCall();
     //modifiedState.street = "Flop";
-    console.log(state.streets.indexOf(state.street));
     let streetIndex = state.streets.indexOf(state.street);
     streetIndex++;
     modifiedState.street = state.streets[streetIndex];
@@ -267,7 +255,6 @@ export const hatterReducer = (state = initialState, action) => {
   }
 
   function checkForZeroStack() {
-    console.log("checkingrorzero");
     modifiedState.playerInfo.forEach(player => {
       if (player.stackSize === 0) {
         mustDeclareWinner = true;
@@ -284,15 +271,12 @@ export const hatterReducer = (state = initialState, action) => {
   }
 
   function handleRemoveFoldedPlayer(players) {
-    console.log(players);
     modifiedState.inHand = [];
-    console.log(modifiedState.inHand);
     players.forEach(player => {
       if (player.inHand) {
         modifiedState.inHand.push({ id: player.id });
       }
     });
-    console.log(modifiedState.inHand);
   }
 
   function removeFoldedPlayer() {
@@ -340,7 +324,6 @@ export const hatterReducer = (state = initialState, action) => {
   }
 
   function handleCheck() {
-    console.log(state.street);
     if (state.street === "Preflop") {
       for (i = 0; i < state.playerInfo.length; i++) {
         if (state.playerInfo[i].smallBlind && state.playerInfo[i].playerTurn) {
@@ -358,7 +341,6 @@ export const hatterReducer = (state = initialState, action) => {
     } else if (state.street === "River") {
       setHasChecked();
       if (modifiedState.checkedPlayers === modifiedState.inHand.length) {
-        console.log("rivering");
         declareAndRewardWinner();
         // declareWinner();
         //
@@ -373,16 +355,7 @@ export const hatterReducer = (state = initialState, action) => {
         // }
       }
     } else {
-      console.log("checking");
-      // there has to be a better way to do this
-      // modifiedState.playerInfo = state.playerInfo.map(player => {
-      //   if(player.playerTurn) {
-      //     player.hasChecked = true;
-      //     modifiedState.checkedPlayers++;
-      //   }
-      //   return player;
-      // });
-      // switchTurns();
+
       setHasChecked();
       if (modifiedState.checkedPlayers === modifiedState.inHand.length) {
         incrementStreet();
@@ -424,7 +397,6 @@ export const hatterReducer = (state = initialState, action) => {
     } else {
       // big blind calls raise heads up
 
-      console.log("statetoplay", state.toPlay);
       modifiedState.playerInfo = state.playerInfo.map(player => {
         if (player.playerTurn) {
           if (player.stackSize - (state.toPlay - player.contributedTowardsToPlay) > 0) {
@@ -433,17 +405,10 @@ export const hatterReducer = (state = initialState, action) => {
 
             player.contributedTowardsToPlay = state.toPlay;
 
-            console.log("contributedtowards", player.contributedTowardsToPlay);
           } else {
             allInRefund =
               state.toPlay - player.contributedTowardsToPlay - player.stackSize;
-            console.log("loggingstate", state.toPlay);
-            console.log(
-              "logging playercontributed",
-              player.contributedTowardsToPlay
-            );
-            console.log("loggin stack", player.stackSize);
-            console.log("allinrefund", allInRefund);
+
             amount = player.stackSize;
             player.stackSize = 0;
           }
@@ -459,16 +424,13 @@ export const hatterReducer = (state = initialState, action) => {
         return player;
       });
       // substitute this with callamount.
-      console.log("amount", amount);
-      console.log("allinrefund", allInRefund);
-      console.log("moddypot", modifiedState.potSize);
+
       addToPot(amount - allInRefund);
 
       modifiedState.playerInfo.forEach(player => {
         if (player.stackSize === 0) {
           mustDeclareWinner = true;
         }
-        console.log("calleachplayer", player);
       });
       if (mustDeclareWinner) {
         allInAlert();
@@ -486,27 +448,15 @@ export const hatterReducer = (state = initialState, action) => {
     } else {
       modifiedState.playerInfo = state.playerInfo.map(player => {
         if (player.playerTurn) {
-          console.log(
-            "logging value of subtraction",
-            player.stackSize - (state.toPlay - player.contributedTowardsToPlay)
-          );
           if (player.stackSize - (state.toPlay - player.contributedTowardsToPlay) > 0) {
             amount = state.toPlay - player.contributedTowardsToPlay;
             removeFromStack(player, amount);
 
             player.contributedTowardsToPlay = state.toPlay;
 
-            console.log("contributedtowards", player.contributedTowardsToPlay);
           } else {
             allInRefund =
               state.toPlay - player.contributedTowardsToPlay - player.stackSize;
-            console.log("loggingstate", state.toPlay);
-            console.log(
-              "logging playercontributed",
-              player.contributedTowardsToPlay
-            );
-            console.log("loggin stack", player.stackSize);
-            console.log("allinrefund", allInRefund);
             amount = player.stackSize;
             player.stackSize = 0;
           }
@@ -521,15 +471,11 @@ export const hatterReducer = (state = initialState, action) => {
         return player;
       });
       // substitute this with callamount.
-      console.log("amount", amount);
-      console.log("allinrefund", allInRefund);
-      console.log("moddypot", modifiedState.potSize);
       addToPot(amount - allInRefund);
       modifiedState.playerInfo.forEach(player => {
         if (player.stackSize === 0) {
           mustDeclareWinner = true;
         }
-        console.log("calleachplayer", player);
       });
       if (mustDeclareWinner) {
         allInAlert();
@@ -553,16 +499,8 @@ export const hatterReducer = (state = initialState, action) => {
 
             player.contributedTowardsToPlay = state.toPlay;
 
-            console.log("contributedtowards", player.contributedTowardsToPlay);
           } else {
             allInRefund = state.toPlay - player.contributedTowardsToPlay - player.stackSize;
-            console.log("loggingstate", state.toPlay);
-            console.log(
-              "logging playercontributed",
-              player.contributedTowardsToPlay
-            );
-            console.log("loggin stack", player.stackSize);
-            console.log("allinrefund", allInRefund);
             amount = player.stackSize;
             player.stackSize = 0;
           }
@@ -577,9 +515,6 @@ export const hatterReducer = (state = initialState, action) => {
         return player;
       });
       // substitute this with callamount.
-      console.log("amount", amount);
-      console.log("allinrefund", allInRefund);
-      console.log("moddypot", modifiedState.potSize);
       addToPot(amount - allInRefund);
       let playersAllIn = [];
       modifiedState.playerInfo.forEach(player => {
@@ -587,7 +522,6 @@ export const hatterReducer = (state = initialState, action) => {
           playersAllIn.push(player);
         }
 
-        console.log("calleachplayer", player);
       });
       if (playersAllIn.length === 1) {
         alert("Player All In");
@@ -612,7 +546,6 @@ export const hatterReducer = (state = initialState, action) => {
       }
     }
 
-    console.log(modifiedState);
   }
 
   function smallBlindOpenRaises() {
@@ -621,9 +554,7 @@ export const hatterReducer = (state = initialState, action) => {
       0
     ) {
       modifiedState.amountRaised = amount - modifiedState.toPlay;
-      console.log("amountraised", modifiedState.amountRaised);
       modifiedState.toPlay = amount;
-      console.log("toplay", modifiedState.toPlay);
       addToPot(amount - state.maxBuyIn / 200);
       modifiedState.preFlopThreeBet = true;
       //Repeating yourself here.  add smallblind to func as an arg
@@ -645,9 +576,7 @@ export const hatterReducer = (state = initialState, action) => {
       0
     ) {
       modifiedState.amountRaised = amount - modifiedState.toPlay;
-      console.log("amountraised", modifiedState.amountRaised);
       modifiedState.toPlay = amount;
-      console.log("toplay", modifiedState.toPlay);
       addToPot(amount - state.maxBuyIn / 100);
       modifiedState.preFlopThreeBet = true;
       //repeating yourself same as above.  maybe a function for both
@@ -670,7 +599,6 @@ export const hatterReducer = (state = initialState, action) => {
         currentContribution = player.contributedTowardsToPlay;
       }
     });
-    console.log("currentcontribution", currentContribution);
     toAdd = modifiedState.toPlay - currentContribution;
     addToPot(toAdd);
   }
@@ -689,7 +617,6 @@ export const hatterReducer = (state = initialState, action) => {
     modifiedState.amountRaised = amount - modifiedState.toPlay;
     modifiedState.toPlay = amount;
 
-    console.log("toplay3bet", modifiedState.toPlay);
     preFlopThreeBetAdd();
     preFlopThreeBetSubtract();
     modifiedState.playerInfo = modifiedState.playerInfo.map(player => {
@@ -698,14 +625,12 @@ export const hatterReducer = (state = initialState, action) => {
       }
       return player;
     });
-    console.log(modifiedState);
     switchTurns();
   }
 
   function handlePreflopRaise() {
     if (unraised) {
       if (action.amount >= state.toPlay * 2) {
-        console.log("raising");
         //raise from small blind heads up
         if (state.headsUp) {
           for (i = 0; i < state.playerInfo.length; i++) {
@@ -752,7 +677,6 @@ export const hatterReducer = (state = initialState, action) => {
         }
       } else {
         // if after placing blinds player has less than a blind left
-        console.log("player has less than a blind left");
         modifiedState.toPlay = amount;
         state.playerInfo.forEach(player => {
           if (player.playerTurn) {
@@ -804,10 +728,6 @@ export const hatterReducer = (state = initialState, action) => {
           // modifiedState.amountRaised = amount - player.contributedTowardsToPlay;
           modifiedState.amountRaised = amount - modifiedState.toPlay;
           modifiedState.toPlay = amount;
-          console.log(
-            "how much is it adding/subbing",
-            amount - player.contributedTowardsToPlay
-          );
           addToPot(amount - player.contributedTowardsToPlay);
         }
       });
@@ -816,7 +736,6 @@ export const hatterReducer = (state = initialState, action) => {
           player.playerTurn &&
           player.stackSize + player.contributedTowardsToPlay >= amount
         ) {
-          console.log("removing from stack");
           removeFromStack(player, amount - player.contributedTowardsToPlay);
           //setContributedTowards(player, amount);
           player.contributedTowardsToPlay = amount;
@@ -836,7 +755,6 @@ export const hatterReducer = (state = initialState, action) => {
   function handleRaise() {
     // repeating yourself
     amount = parseFloat(action.amount);
-    console.log("logging amount for decimal", amount);
 
     if (pF) {
       handlePreflopRaise();
@@ -852,14 +770,12 @@ export const hatterReducer = (state = initialState, action) => {
       return player.id === winner;
     });
 
-    console.log(foundWinner);
     if (foundWinner === undefined) {
       alert("Player not in hand");
       declareWinner();
     }
   }
   function rewardWinner(winner) {
-    console.log("rewardwinner", winner);
     modifiedState.playerInfo = state.playerInfo.map(player => {
       if (player.id === winner) {
         // add pot to winner's stack
@@ -867,7 +783,6 @@ export const hatterReducer = (state = initialState, action) => {
       }
       return player;
     });
-    console.log("checking stack size", modifiedState.playerInfo);
   }
 
   function declareAndRewardWinner() {
@@ -893,10 +808,6 @@ export const hatterReducer = (state = initialState, action) => {
       break;
     case actions.BEGIN_GAME:
       handleBeginGame();
-
-      break;
-    case actions.RESUME_GAME:
-      handleResumeGame();
 
       break;
     case actions.FOLD:
@@ -932,6 +843,5 @@ export const hatterReducer = (state = initialState, action) => {
     default:
       console.log("No action chosen");
   }
-  console.log('state room', modifiedState)
   return modifiedState;
 };

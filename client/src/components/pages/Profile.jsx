@@ -24,7 +24,6 @@ export class Profile extends Component {
 
   renderRedirect = () => {
     if (this.state.redirect) {
-      console.log('setting')
       return <Redirect to={`/game/${this.state.id}`} />
     }
   }
@@ -34,7 +33,6 @@ export class Profile extends Component {
     const value = this.input.value;
 
     api.addGame({ playerCount: 2, playerInfo: [], name: value }).then(game => {
-      console.log(game);
       this.props.dispatch(setName(value));
       this.setRedirect(game.game._id)
     })
@@ -44,7 +42,6 @@ export class Profile extends Component {
 
   showGames = () => {
     return this.state.games.map((game) => {
-      console.log(game)
       return <Link to={`/game/${game._id}`}><li>{game.name}</li></Link>
     })
   }
