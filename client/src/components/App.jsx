@@ -34,7 +34,7 @@ export default class App extends Component {
           <Route path="/" exact component={Home} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
-          <Route path="/profile" component={Profile} />
+          {api.isLoggedIn() && <Route path="/profile" component={Profile} />}
           <Route path="/game/:id" component={Game} />
 
           <Route render={() => <h2>404</h2>} />
