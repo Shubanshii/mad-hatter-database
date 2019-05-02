@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Notification from './Notification';
@@ -25,34 +24,19 @@ export class PlayerCircle extends Component {
 
     }
     return (
-      <div className="App">
-        <div className="row">
-          <div className="col-3 align-self-center">
-            <h3>Player 1</h3>
-            <h5>{this.props.playerInfo[0].stackSize}</h5>
-          </div>
-          <div className="col-6 align-self-start"><Notification /></div>
-          <div className="col-3 align-self-center">
-            <h3>Player 2</h3>
-            <h5>{this.props.playerInfo[1].stackSize}</h5>
-          </div>
+
+      <div className="row">
+        <div className="col-3 align-self-center">
+          <h3>Player 1</h3>
+          <h5>{this.props.playerInfo[0].stackSize}</h5>
         </div>
+        <div className="col-6 align-self-start"><Notification /></div>
+        <div className="col-3 align-self-center">
+          <h3>Player 2</h3>
+          <h5>{this.props.playerInfo[1].stackSize}</h5>
+        </div>
+      </div>
 
-        {/*<ul className='circle-container'>
-          <h5 className='street'>Street: {this.props.street}</h5>
-          <h5>Turn: {playerTurn}</h5>
-          <li>
-            <h3>Player 1</h3>
-            <h5>{this.props.playerInfo[0].stackSize}</h5>
-
-          </li>
-          <li>
-            <h3>Player 2</h3>
-            <h5>{this.props.playerInfo[1].stackSize}</h5>
-
-          </li>
-    </ul>*/}
-      </div >
     );
   }
 }
