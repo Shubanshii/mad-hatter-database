@@ -28,13 +28,14 @@ export default class App extends Component {
           <NavLink to="/" exact>Home</NavLink>
           {!api.isLoggedIn() && <NavLink to="/signup">Signup</NavLink>}
           {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
+          {api.isLoggedIn() && <NavLink to="/profile">Profile</NavLink>}
           {api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link>}
         </header>
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
-          {api.isLoggedIn() && <Route path="/profile" component={Profile} />}
+          <Route path="/profile" component={Profile} />
           <Route path="/game/:id" component={Game} />
 
           <Route render={() => <h2>404</h2>} />
