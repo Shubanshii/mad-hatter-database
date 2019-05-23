@@ -31,13 +31,14 @@ router.post("/signup", (req, res, next) => {
       req.logIn(userSaved, () => {
         // hide "encryptedPassword" before sending the JSON (it's a security risk)
         userSaved.password = undefined;
-        res.json( userSaved );
+        res.json(userSaved);
       });
     })
     .catch(err => next(err))
 })
 
 router.post("/login", (req, res, next) => {
+  console.log('logging in on login')
   const { username, password } = req.body
 
   // first check to see if there's a document with that username
@@ -71,6 +72,7 @@ router.post("/login", (req, res, next) => {
 })
 
 router.post('/login-with-passport-local-strategy', (req, res, next) => {
+  console.log('logging in with passport local strat')
   passport.authenticate('local', (err, theUser, failureDetails) => {
     if (err) {
       res.status(500).json({ message: 'Something went wrong' })

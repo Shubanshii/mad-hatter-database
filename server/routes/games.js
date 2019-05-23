@@ -4,6 +4,8 @@ const { isLoggedIn } = require('../middlewares')
 
 const router = express.Router();
 
+console.log('serversidegames.jsisloggedin', isLoggedIn)
+
 // Route to get all games
 router.get('/', isLoggedIn, (req, res, next) => {
   Game.find({ owner: req.user._id })
@@ -17,7 +19,7 @@ router.get('/', isLoggedIn, (req, res, next) => {
 router.get('/:id', isLoggedIn, (req, res, next) => {
   Game.findById(req.params.id)
     .then(game => {
-      console.log('game from within componentdidmount', game);
+      // console.log('game from within componentdidmount', game);
       res.json(game);
     })
     .catch(err => next(err))
@@ -39,7 +41,6 @@ router.post('/', isLoggedIn, (req, res, next) => {
 
 router.patch('/:id', isLoggedIn, (req, res, next) => {
   let { playerCount, playerInfo, name } = req.body;
-  console.log('1230942304595885885585543503', req.body, req.params.id, name)
   // console.log(req.body, req.user);
   console.log('name server', name)
   Game.findByIdAndUpdate(req.params.id, { playerCount, playerInfo, name, owner: req.user._id })

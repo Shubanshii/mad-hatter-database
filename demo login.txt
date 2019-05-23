@@ -1,0 +1,7 @@
+it's a login on the screen
+like so a random person who visits the site doesn't hae to sign up and add data
+they can just log in with a test user
+you can  even at it inside the input value for further ease
+```<input type="text" value="niko" />```
+```<input type="password" value="nikospassword" />```
+something like that

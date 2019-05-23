@@ -20,6 +20,7 @@ export default {
   // This method is synchronous and returns true or false
   // To know if the user is connected, we just check if we have a value for localStorage.getItem('user')
   isLoggedIn() {
+    console.log('isloggedinskypooo', localStorage.getItem('user'))
     return localStorage.getItem('user') != null
   },
 
@@ -66,7 +67,9 @@ export default {
   getGames() {
     return service
       .get('/games')
-      .then(res => res.data)
+      .then(res => {
+        return res.data
+      })
       .catch(errHandler)
   },
 

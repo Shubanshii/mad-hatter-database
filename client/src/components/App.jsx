@@ -16,6 +16,8 @@ export default class App extends Component {
     }
   }
 
+
+
   handleLogoutClick(e) {
     api.logout()
   }
@@ -26,6 +28,7 @@ export default class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Mad HATter</h1>
           <NavLink to="/" exact>Home</NavLink>
+          {console.log('logggingthisdfosdif', api.isLoggedIn())}
           {!api.isLoggedIn() && <NavLink to="/signup">Signup</NavLink>}
           {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
           {api.isLoggedIn() && <NavLink to="/profile">Profile</NavLink>}

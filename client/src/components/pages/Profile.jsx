@@ -47,6 +47,7 @@ export class Profile extends Component {
   }
 
   getGames = () => {
+    console.log('apifromprofilecomp', api.service().then(res => console.log(res)))
     api.getGames().then(games => {
       this.setState({
         games
