@@ -31,3 +31,6 @@ Node.js
 * [Node.js](https://nodejs.org/en/docs)
 * [React JS](https://reactjs.org/docs/getting-started.html)
 
+## Authors
+
+* **Chris Day** - *Initial work* - [Shubanshii](https://github.com/shubanshii)
