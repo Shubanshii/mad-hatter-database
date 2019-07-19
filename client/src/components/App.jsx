@@ -26,7 +26,7 @@ export default class App extends Component {
     return (
       <div className="App container">
         <header className="App-header">
-          <h1 className="App-title">Mad HATter Test</h1>
+          <h1 className="App-title">Mad HATter</h1>
           <NavLink to="/" exact>Home</NavLink>
           {console.log('logggingthisdfosdif', api.isLoggedIn())}
           {!api.isLoggedIn() && <NavLink to="/signup">Signup</NavLink>}
