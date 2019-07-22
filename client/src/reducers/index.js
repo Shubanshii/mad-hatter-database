@@ -102,10 +102,37 @@ export const hatterReducer = (state = initialState, action) => {
     });
   }
 
+  function setPotSize(amount) {
+    modifiedState.potSize = amount;
+  }
+
   function handleBeginGame() {
     addAllPlayersToHand();
-
-    addToPot(smallBlind + bigBlind);
+    setPotSize(smallBlind + bigBlind)
+    modifiedState.handIndex = 1;
+    modifiedState.toPlay = 1
+    modifiedState.amountRaised = 0
+    modifiedState.toCall = 1
+    modifiedState.completed = false
+    modifiedState.raised = false
+    modifiedState.playerInfo = state.playerInfo.map(player => {
+      if(player.id === 1) {
+        player.inHand = true
+        player.playerTurn = true
+        player.smallBlind = true
+        player.bigBlind = false
+        player.contributedTowardsToPlay = 0
+        player.hasChecked = false
+      } else if(player.id === 2) {
+        player.inHand = true
+        player.playerTurn = false
+        player.smallBlind = false
+        player.bigBlind = true
+        player.contributedTowardsToPlay = 0
+        player.hasChecked = false
+      }
+    })
+    //addToPot(smallBlind + bigBlind);
     modifiedState.playerInfo = state.playerInfo.map(player => {
       if (player.smallBlind === true) {
         if (action.res.playerInfo[0]) {
@@ -550,8 +577,7 @@ export const hatterReducer = (state = initialState, action) => {
 
   function smallBlindOpenRaises() {
     if (
-      state.playerInfo[i].stackSize - (action.amount - state.maxBuyIn / 200) >=
-      0
+      state.playerInfo[i].stackSize - (action.amount - state.maxBuyIn / 200) >= 0
     ) {
       modifiedState.amountRaised = amount - modifiedState.toPlay;
       modifiedState.toPlay = amount;

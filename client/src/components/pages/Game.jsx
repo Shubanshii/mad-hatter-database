@@ -11,6 +11,7 @@ export class Game extends Component {
   componentDidMount() {
     api.getGame(this.props.match.params.id)
       .then(res => {
+        console.log('logging componentdidmount')
         this.props.dispatch(beginGame(res))
         this.props.dispatch(setName(res.name))
 

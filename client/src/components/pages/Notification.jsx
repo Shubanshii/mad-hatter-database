@@ -27,7 +27,6 @@ export class Notification extends Component {
   // }
 
   render() {
-
     let playerInfo = this.props.playerInfo;
     let playerTurn;
     let smallBlind;
