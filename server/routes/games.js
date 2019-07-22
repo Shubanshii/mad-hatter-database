@@ -40,10 +40,10 @@ router.post('/', isLoggedIn, (req, res, next) => {
 });
 
 router.patch('/:id', isLoggedIn, (req, res, next) => {
-  let { playerCount, playerInfo, name } = req.body;
+  let { playerCount, playerInfo, name, saved, handIndex } = req.body;
   // console.log(req.body, req.user);
-  console.log('name server', name)
-  Game.findByIdAndUpdate(req.params.id, { playerCount, playerInfo, name, owner: req.user._id })
+  console.log('name server', saved)
+  Game.findByIdAndUpdate(req.params.id, { saved, handIndex, playerCount, playerInfo, name, owner: req.user._id })
     .then(game => {
       res.json({
         success: true,

@@ -17,7 +17,9 @@ const initialState = {
     isHidden: false
   }
   ],
+  // saved: false,
   name: '',
+  saved: false,
   playerCount: 2,
   toPlay: 1,
   amountRaised: 0,
@@ -115,6 +117,7 @@ export const hatterReducer = (state = initialState, action) => {
     modifiedState.toCall = 1
     modifiedState.completed = false
     modifiedState.raised = false
+    modifiedState.saved = false
     modifiedState.playerInfo = state.playerInfo.map(player => {
       if(player.id === 1) {
         player.inHand = true
@@ -159,6 +162,10 @@ export const hatterReducer = (state = initialState, action) => {
       }
       return player;
     });
+  }
+
+  function handleResumeGame() {
+    console.log('logging action in resume', action.res)
   }
 
   function handleHideCheck() {
@@ -834,6 +841,10 @@ export const hatterReducer = (state = initialState, action) => {
       break;
     case actions.BEGIN_GAME:
       handleBeginGame();
+
+      break;
+    case actions.RESUME_GAME:
+      handleResumeGame();
 
       break;
     case actions.FOLD:

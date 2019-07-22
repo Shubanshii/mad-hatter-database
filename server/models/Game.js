@@ -12,6 +12,12 @@ const gameSchema = new mongoose.Schema({
   playerCount: {
     type: Number
   },
+  handIndex: {
+    type: Number
+  },
+  saved: {
+    type: Boolean
+  },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'

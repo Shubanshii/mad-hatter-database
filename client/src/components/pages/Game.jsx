@@ -3,7 +3,7 @@ import PlayerCircle from './PlayerCircle';
 import PlayerDecision from './PlayerDecision';
 import Notification from './Notification';
 import { connect } from 'react-redux';
-import { beginGame, setName } from '../../actions';
+import { beginGame, setName, resumeGame } from '../../actions';
 import api from '../../api';
 
 
@@ -11,10 +11,16 @@ export class Game extends Component {
   componentDidMount() {
     api.getGame(this.props.match.params.id)
       .then(res => {
-        console.log('logging componentdidmount')
-        this.props.dispatch(beginGame(res))
-        this.props.dispatch(setName(res.name))
+        if(!res.saved) {
+          console.log('logging begin dispatch', res)
+          this.props.dispatch(beginGame(res))
+          this.props.dispatch(setName(res.name))
 
+        } else{
+          console.log('logging resume dispatch)')
+          this.props.dispatch(resumeGame(res))
+        }
+        
 
       })
 
@@ -22,10 +28,11 @@ export class Game extends Component {
   }
 
   saveGame = () => {
+    let { handIndex, playerCount, playerInfo, name, saved } = this.props;
+    saved = true
+    console.log('logging saved from savegame func', saved)
 
-    let { playerCount, playerInfo, name } = this.props;
-
-    api.updateGame(this.props.match.params.id, { playerCount, playerInfo, name }).then(game => {
+    api.updateGame(this.props.match.params.id, { playerCount, playerInfo, name, handIndex, saved }).then(game => {
     })
   }
 
@@ -50,7 +57,9 @@ export class Game extends Component {
 const mapStateToProps = state => ({
   name: state.name,
   playerCount: state.playerCount,
-  playerInfo: state.playerInfo
+  playerInfo: state.playerInfo,
+  handIndex: state.handIndex,
+  saved: state.saved
 });
 
 export default connect(mapStateToProps)(Game);
