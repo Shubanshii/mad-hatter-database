@@ -27,7 +27,7 @@ export default class App extends Component {
       <div className="App container">
         <header className="App-header">
           <h1 className="App-title">Mad HATter</h1>
-          <NavLink to="/" exact>Home</NavLink>
+          {/*<NavLink to="/" exact>Home</NavLink>*/}
           {console.log('logggingthisdfosdif', api.isLoggedIn())}
           {!api.isLoggedIn() && <NavLink to="/signup">Signup</NavLink>}
           {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
@@ -35,9 +35,10 @@ export default class App extends Component {
           {api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link>}
         </header>
         <Switch>
-          <Route path="/" exact component={Home} />
+          {/*<Route path="/" exact component={Home} />*/}
+          <Route path="/" exact component={Login} />
           <Route path="/signup" component={Signup} />
-          <Route path="/login" component={Login} />
+          <Route path="/login" exact component={Login} />
           <Route path="/profile" component={Profile} />
           <Route path="/game/:id" component={Game} />
 
