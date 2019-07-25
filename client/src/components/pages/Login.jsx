@@ -39,15 +39,16 @@ export default class Login extends Component {
         {this.state.message && <div className="info info-danger">
           {this.state.message}
         </div>}
-        <p className="instructions">The Mad Hatter is an action tracker for Texas Hold'Em
+        <p className="instructions">The Mad Hatter is an action tracker for Texas Hold'Em. <br/>
 It's use case is currently for 2 people with a deck of cards,
-but no poker chips or decent substitute for poker chips.
+but no poker chips or decent substitute for poker chips. <br/>
 
 It is best used on a tablet.  Deal the cards, then enter
-your bets, raises, checks, calls, etc. on the app.
+your bets, raises, checks, calls, etc. on the app. <br/>
 
-Make an account.  Create a game.  Then save the game.
-The saved game will be available on your profile dashboard.</p>
+Make an account.  Create a game.  Then save the game. <br/>
+The saved game will be available on your profile dashboard.  Save the game at the beginning of a hand before either player has acted.
+<br/>    More flexible save features, more players, and support for multiple devices to connect to the same poker room coming soon.</p>
       </div>
     );
   }

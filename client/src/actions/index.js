@@ -12,7 +12,7 @@ export const beginGame = (res) => ({
 
 });
 
-export const RESUME_GAME = 'BEGIN_GAME';
+export const RESUME_GAME = 'RESUME_GAME';
 export const resumeGame = (res) => ({
   type: RESUME_GAME,
   res
